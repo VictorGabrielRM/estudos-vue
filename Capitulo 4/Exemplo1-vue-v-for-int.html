@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Hello bootstrap</title>
+</head>
+<body>
+    <!-- 
+        Diretiva v-for: laço de repetição sobre um Array(item in Array),
+        pode ser usando no lugar do Array um inteiro, assim o v-for repetirá na quantidade de vezes do número informado.
+     -->
+    <div class="container">
+        <h1>The multiplication table of 4.</h1>
+        <ul class="list-group">
+            <li v-for="i in 11" class="list-group-item">
+                {{ i - 1 }} times 4 equals {{ (i - 1) * 4 }}
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js"></script>
+<script type="text/javascript">
+        var data = {
+            name: ""
+        };
+        new Vue({
+            el: '.container'
+        })
+    </script>
+</html>

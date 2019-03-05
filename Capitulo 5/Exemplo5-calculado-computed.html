@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Calculado - Propriedade calculada</title>
+</head>
+<body>
+    <div class="container">
+            <h1>Enter 2 numbers to calculate their sum.</h1>
+            <form class="form-inline">
+                <input v-model.number="a" class="form-control">
+                <select v-model="operator" class="form-control">
+                        <option value="+">+</option>
+                        <option value="-">-</option>
+                        <option value="*">*</option>
+                        <option value="/">/</option>
+                    </select>
+                <input v-model.number="b" class="form-control">
+            </form>
+            <h2>Result: {{a}} + {{b}} = {{c}}</h2>
+            <pre>
+                {{ $data }}
+            </pre>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js"></script>
+<script type="text/javascript">
+        new Vue({
+            el: '.container',
+            data: {
+                a: 1,
+                b: 2,
+                operator: "+"
+            },
+            computed: {
+                c: function(){
+                    switch (this.operator) {
+                        case "+":
+                            return this.a + this.b        
+                            break;
+                        case "-":
+                            return this.a - this.b
+                            break;
+                        case "*":
+                            return this.a * this.b
+                            break;
+                        case "/":
+                            return this.a / this.b
+                            break;
+                        default:
+                            break;
+                    }
+                    return this.a + this.b
+                }
+            }
+        })
+    </script>
+</html>

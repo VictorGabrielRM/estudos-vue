@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Famous Stories</title>
+</head>
+<body>
+    <!--
+        Oedenação com propriedade computada
+    -->
+    <div class="container">
+        <h1>Let's hear some stories</h1>
+        
+        <ul class="list-group">
+            <li v-for="story in orderedStories" class="list-group-item">
+                {{ story.writer }} said "{{ story.plot }}"
+                and upvoted {{ story.upvotes }} times.
+            </li>
+        </ul>
+        <br>
+        <button @click="order = order * -1" class="btn btn-primary">Reverse Order</button>
+        <pre>
+            <code>
+            {{ $data }}
+            </code>
+        </pre>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js"></script>
+<script type="text/javascript">
+        var data = {
+            stories:[
+                {
+                    plot: "I crashed my car today!",
+                    writer: "Alex",
+                    upvotes: 28
+                },
+                {
+                    plot: "Yesterday, someone stole my bag!",
+                    writer: "John",
+                    upvotes: 8
+                },
+                {
+                    plot: "Someone ate my chocolate...",
+                    writer: "John",
+                    upvotes: 51
+                },
+                {
+                    plot: "I ate someone's chocolate!",
+                    writer: "Alex",
+                    upvotes: 74
+                }
+            ],
+            order: -1
+        };
+        new Vue({
+            el: '.container',
+            data: data,
+            computed: {
+                orderedStories: function (){
+                    var order = this.order
+                    return this.stories.sort( function(a, b){
+                        return (a.upvotes - b.upvotes) * order;
+                    })
+                }
+            },
+        })
+    </script>
+</html>

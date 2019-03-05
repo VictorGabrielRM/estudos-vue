@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Hello vue</title>
+</head>
+<body>
+    <div id="app">
+        <div v-if="gender === 'male' || gender === 'female'">
+            <h1>Hello,
+                <span v-show="gender === 'female'">Miss {{name}}!</span>
+                <span v-if="gender === 'male'">Mr {{ name }}!</span>
+            </h1>
+            
+
+        </div>
+        <h1 v-else="!gender">So you can't decide, Fine !</h1>
+
+        <label for="gender"> Enter your gender:</label>
+        <br>
+        <input id="gender" v-model="gender">
+        <br>
+        <label for="name"> Enter your name:</label>
+        <br>
+        <input id="name" v-model="name">
+        <pre>
+            {{ $data }}
+        </pre>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.min.js"></script>
+<script>
+    var data = {
+        name: "",
+        gender: ""
+    };
+    new Vue({
+        el: '#app',
+        data: data,
+    })
+</script>
+</html>
