@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>The Gotham Gazette</title>
+</head>
+<body>
+    <div class="container">
+        <h1>The real identities of Super Heroes!</h1>
+        <ul class="list-group">
+            <li v-for="hero in heroes" class="list-group-item">
+                {{ hero | snitch }}
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+Vue.filter('snitch', function (hero){
+    return hero.secretId + ' is ' + hero.firstname + ' ' + hero.lastname + ' in real life!'
+})
+
+new Vue({
+    el: '.container',
+    data: {
+        heroes: [
+            {
+                firstname:'Bruce',
+                lastname:'Wayne', 
+                secretId:'Batman'
+            },
+            { 
+                firstname:'Clark',
+                lastname:'Kent',
+                secretId:'Superman'},
+            {
+                firstname:'Jay',
+                lastname:'Garrick',
+                secretId:'Flash'
+            },
+            { 
+                firstname:'Peter',
+                lastname:'Parker',
+                secretId:'Spider-Man'
+            }
+            
+        ]
+    }
+})
+</script>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Vue</title>
+</head>
+<body>
+    <!--
+        Oedenação com propriedade computada
+    -->
+    <div class="container">
+        <h1>People</h1>
+        
+        <ul class="list-group">
+            <li v-for="person in _.orderBy(people, 'age', ['asc'])" class="list-group-item">
+                Name: {{ person.name }}
+                <br>
+                Age: {{ person.age }}
+                
+            </li>
+        </ul>
+
+        <h1>Old people</h1>
+        <ul class="list-group">
+            <li v-for="person in old" class="list-group-item">
+                Name: {{ person.name }}
+                <br>
+                Age: {{ person.age }}
+                
+            </li>
+        </ul>
+        <br>
+        <pre>
+            <code>
+            {{ $data }}
+            </code>
+        </pre>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
+<script type="text/javascript">
+        var data = {
+            people:[
+                {
+                    name: "Ned",
+                    age: 28
+                },
+                {
+                    name: "John",
+                    age: 68
+                },
+                {
+                    name: "Pedro",
+                    age: 51
+                },
+                {
+                    name: "Lothar",
+                    age: 74
+                }
+            ],
+        };
+        new Vue({
+            el: '.container',
+            data: data,
+            methods: {
+                reverseOrder: function(){
+                    this.order = (this.order === 'desc') ? 'asc' : 'desc';
+                }
+            },
+            computed: {
+                old: function (){
+                    return this.people.filter(function(person){
+                        return person.age > 65;
+                    })
+                }
+            },
+        })
+    </script>
+</html>
